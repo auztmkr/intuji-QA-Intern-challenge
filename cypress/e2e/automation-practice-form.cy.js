@@ -65,3 +65,10 @@ t('Should fill the form and submit successfully', () => {
     cy.get('#subjectsInput').type('Maths{enter}English{enter}History{enter}');
     cy.get('.subjects-auto-complete__multi-value').should('have.length', 3);
   });
+  
+it('Should allow selecting multiple hobbies', () => {
+    cy.get('label[for="hobbies-checkbox-1"]').click(); // Sports
+    cy.get('label[for="hobbies-checkbox-2"]').click(); // Reading
+    cy.get('label[for="hobbies-checkbox-3"]').click(); // Music
+    cy.get('input[type="checkbox"]:checked').should('have.length', 3);
+  });

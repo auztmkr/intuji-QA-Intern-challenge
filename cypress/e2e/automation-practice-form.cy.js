@@ -100,3 +100,8 @@ it('Should reset the form after submission', () => {
     cy.get('#firstName').should('have.value', '');
     cy.get('#lastName').should('have.value', '');
   });
+
+    it('Should not allow alphabets in mobile number field', () => {
+    cy.get('#userNumber').type('abcde');
+    cy.get('#userNumber').should('have.value', '');
+  });

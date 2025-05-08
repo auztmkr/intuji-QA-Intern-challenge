@@ -78,3 +78,19 @@ it('Should allow uploading a file', () => {
     cy.get('input[type="file"]').attachFile('example.png');
     cy.get('input[type="file"]').should('have.value').and('include', 'example.png');
   });
+
+it('Should reset the form after submission', () => {
+    // Fill minimal required fields
+    cy.get('#firstName').type('John');
+    cy.get('#lastName').type('Doe');
+    cy.get('label[for="gender-radio-1"]').click();
+    cy.get('#userNumber').type('1234567890');
+    cy.get('#submit').click();
+
+    // Close the modal
+    cy.get('#closeLargeModal').click();
+
+    // Ensure the form is cleared
+    cy.get('#firstName').should('have.value', '');
+    cy.get('#lastName').should('have.value', '');
+  });

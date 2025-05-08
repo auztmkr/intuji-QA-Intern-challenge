@@ -60,3 +60,8 @@ t('Should fill the form and submit successfully', () => {
     // Check that First Name field shows error (red border)
     cy.get('#firstName').should('have.css', 'border-color', 'rgb(220, 53, 69)');
   });
+  
+  it('Should allow multiple subjects to be entered', () => {
+    cy.get('#subjectsInput').type('Maths{enter}English{enter}History{enter}');
+    cy.get('.subjects-auto-complete__multi-value').should('have.length', 3);
+  });

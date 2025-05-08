@@ -105,3 +105,13 @@ it('Should reset the form after submission', () => {
     cy.get('#userNumber').type('abcde');
     cy.get('#userNumber').should('have.value', '');
   });
+
+  it('Should allow only date selection from calendar', () => {
+    cy.get('#dateOfBirthInput').click();
+    cy.get('.react-datepicker__year-select').select('2000');
+    cy.get('.react-datepicker__month-select').select('January');
+    cy.get('.react-datepicker__day--001:not(.react-datepicker__day--outside-month)').click();
+    cy.get('#dateOfBirthInput').should('have.value', '01 Jan 2000');
+  });
+
+});

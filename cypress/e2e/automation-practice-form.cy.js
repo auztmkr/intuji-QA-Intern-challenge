@@ -1,3 +1,4 @@
+
 // Ignore cross-origin script errors that may break tests unintentionally.
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false;
@@ -71,4 +72,9 @@ it('Should allow selecting multiple hobbies', () => {
     cy.get('label[for="hobbies-checkbox-2"]').click(); // Reading
     cy.get('label[for="hobbies-checkbox-3"]').click(); // Music
     cy.get('input[type="checkbox"]:checked').should('have.length', 3);
+  });
+  
+it('Should allow uploading a file', () => {
+    cy.get('input[type="file"]').attachFile('example.png');
+    cy.get('input[type="file"]').should('have.value').and('include', 'example.png');
   });

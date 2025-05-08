@@ -53,3 +53,10 @@ t('Should fill the form and submit successfully', () => {
     // Assert the submission modal
     cy.get('.modal-content').should('contain', 'Thanks for submitting the form');
   });
+
+ it('Should show errors on submitting empty form', () => {
+    cy.get('#submit').click();
+
+    // Check that First Name field shows error (red border)
+    cy.get('#firstName').should('have.css', 'border-color', 'rgb(220, 53, 69)');
+  });

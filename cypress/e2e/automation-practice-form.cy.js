@@ -89,6 +89,12 @@ it('Should reset the form after submission', () => {
 
     // Close the modal
     cy.get('#closeLargeModal').click();
+  
+ it('Should validate email format', () => {
+    cy.get('#userEmail').type('invalidemail');
+    cy.get('#submit').click();
+    cy.get('#userEmail').should('have.css', 'border-color', 'rgb(220, 53, 69)');
+  });
 
     // Ensure the form is cleared
     cy.get('#firstName').should('have.value', '');
